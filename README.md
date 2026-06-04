@@ -20,9 +20,22 @@
 
 ## Gemini APIキーの取得
 
-1. [https://aistudio.google.com](https://aistudio.google.com) にアクセス
+> **💡 初期設定はPCで行うことを推奨します。**  
+> Google AI Studio（aistudio.google.com）はPC向けのサイトのため、スマホでの操作は手間がかかります。  
+> APIキーをPCで取得・確認しておき、スマホのアプリ設定タブに貼り付けるのがスムーズです。
+
+1. PC で [https://aistudio.google.com](https://aistudio.google.com) にアクセス
 2. 左メニュー「Get API key」→「Create API key」
-3. 発行されたキー（`AIza...`）をアプリの設定タブに貼り付け
+3. 発行されたキー（`AIza...`）をコピーしてメモアプリ等に保存
+4. アプリの設定タブを開き、APIキー欄に貼り付けて「保存する」
+
+### スマホで使う場合の注意
+
+アプリの設定（APIキー・生年月日・アレルギー）は**ブラウザのlocalStorage**に保存されます。  
+これはデバイスごとに独立しているため、**同じGoogleアカウントでログインしても設定は共有されません。**
+
+スマホで使い始める場合は、設定タブで改めて入力が必要です。  
+APIキーは [Google AI Studio](https://aistudio.google.com) にログインすれば同じGoogleアカウントでいつでも確認できます。
 
 ## ⚠️ APIレート制限について
 
