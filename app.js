@@ -14,9 +14,11 @@ function switchTab(tabId) {
   document.getElementById(`tab-${tabId}`).classList.add('active');
   document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
   document.querySelector('.header-title').textContent = TAB_TITLES[tabId];
-  document.querySelector('.main-content').scrollTop = 0;
   if (tabId === 'vaccine') renderVaccineTab();
   if (tabId === 'recipe') renderRecipeAllergyDisplay();
+  requestAnimationFrame(() => {
+    document.querySelector('.main-content').scrollTop = 0;
+  });
 }
 
 document.querySelectorAll('.tab-btn').forEach(btn =>
