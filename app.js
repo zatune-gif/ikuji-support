@@ -142,6 +142,49 @@ function initRecipeTab() {
   });
 }
 
+// ===== 予防接種タブ =====
+function renderVaccineTab() {
+  const birthdate      = storageLoad(STORAGE_KEYS.BIRTHDATE);
+  const noBirthdateEl  = document.getElementById('vaccine-no-birthdate');
+  const listEl         = document.getElementById('vaccine-list');
+
+  if (!birthdate) {
+    noBirthdateEl.classList.remove('hidden');
+    listEl.innerHTML = '';
+    return;
+  }
+  noBirthdateEl.classList.add('hidden');
+
+  const done     = storageLoad(STORAGE_KEYS.VACCINATION_DONE, []);
+  const schedule = calculateSchedule(birthdate);
+
+  listEl.innerHTML = schedule.map(v => {
+    const isDone      = done.includes(v.id);
+    const isUpcoming  = v.isUpcoming && !isDone;
+    const classes     = ['vaccine-item', isDone ? 'done' : '', isUpcoming ? 'upcoming' : '']
+      .filter(Boolean).join(' ');
+
+    return `
+      <div class="${classes}">
+        <input type="checkbox" id="v-${v.id}" ${isDone ? 'checked' : ''}
+          onchange="toggleVaccineDone('${v.id}', this.checked)">
+        <div class="vaccine-info">
+          <div class="vaccine-name">${v.name}</div>
+          <div class="vaccine-dates">${v.startDateStr} 〜 ${v.endDateStr}</div>
+        </div>
+        ${isUpcoming ? '<span class="badge-upcoming">接種時期</span>' : ''}
+      </div>
+    `;
+  }).join('');
+}
+
+function toggleVaccineDone(id, checked) {
+  let done = storageLoad(STORAGE_KEYS.VACCINATION_DONE, []);
+  done = checked ? [...new Set([...done, id])] : done.filter(d => d !== id);
+  storageSave(STORAGE_KEYS.VACCINATION_DONE, done);
+  renderVaccineTab();
+}
+
 // ===== 初期化 =====
 function init() {
   initSettingsTab();
