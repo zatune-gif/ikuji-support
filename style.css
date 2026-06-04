@@ -630,16 +630,39 @@ body {
   font-family: monospace;
   font-size: 13px;
   color: var(--text);
-  margin: 6px 0 4px;
-  word-break: break-all;
+  margin: 8px 0 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
-.ob-key-mask { color: var(--text-muted); letter-spacing: 2px; }
+.ob-key-label {
+  font-size: 10px;
+  font-family: inherit;
+  background: var(--secondary);
+  color: var(--white);
+  border-radius: 4px;
+  padding: 2px 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.ob-key-mask { color: var(--text-muted); letter-spacing: 2px; flex: 1; }
+
+.ob-copy-icon {
+  font-size: 18px;
+  color: var(--text-muted);
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  padding: 2px 6px;
+  flex-shrink: 0;
+  background: var(--white);
+}
 
 .ob-key-hint {
-  font-size: 11px;
-  color: var(--secondary);
-  font-weight: 600;
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.6;
 }
 
 .ob-inline-error {
