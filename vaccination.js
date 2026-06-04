@@ -23,7 +23,11 @@ const VACCINE_SCHEDULE = [
 
 function addMonths(date, months) {
   const d = new Date(date);
+  const day = d.getDate();
+  d.setDate(1);
   d.setMonth(d.getMonth() + months);
+  const lastDay = new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate();
+  d.setDate(Math.min(day, lastDay));
   return d;
 }
 
@@ -34,8 +38,9 @@ function formatDate(date) {
 function getMonthsAge(birthdateStr) {
   const birth = new Date(birthdateStr);
   const today = new Date();
-  const months = (today.getFullYear() - birth.getFullYear()) * 12
+  let months = (today.getFullYear() - birth.getFullYear()) * 12
     + (today.getMonth() - birth.getMonth());
+  if (today.getDate() < birth.getDate()) months--;
   return Math.max(0, months);
 }
 

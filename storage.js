@@ -7,7 +7,11 @@ const STORAGE_KEYS = {
 };
 
 function storageSave(key, value) {
-  localStorage.setItem(key, typeof value === 'string' ? value : JSON.stringify(value));
+  try {
+    localStorage.setItem(key, typeof value === 'string' ? value : JSON.stringify(value));
+  } catch {
+    console.error(`storage: save failed for key "${key}"`);
+  }
 }
 
 function storageLoad(key, defaultValue = null) {

@@ -33,19 +33,30 @@ async function generateRecipe({ apiKey, ageMonths, ingredients, allergies }) {
 【この月齢のポイント】
 （注意点を1〜2文で）`;
 
-  const response = await fetch(`${GEMINI_ENDPOINT}?key=${apiKey}`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      contents: [{ parts: [{ text: prompt }] }]
-    }),
-  });
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 30000);
 
-  if (!response.ok) {
-    const err = await response.json().catch(() => ({}));
-    throw new Error(err.error?.message || `APIエラー: ${response.status}`);
+  try {
+    const response = await fetch(`${GEMINI_ENDPOINT}?key=${apiKey}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] }),
+      signal: controller.signal,
+    });
+
+    if (!response.ok) {
+      const err = await response.json().catch(() => ({}));
+      throw new Error(err.error?.message || `APIエラー: ${response.status}`);
+    }
+
+    const data = await response.json();
+    const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+    if (!text) throw new Error('APIから回答を取得できませんでした');
+    return text;
+  } catch (err) {
+    if (err.name === 'AbortError') throw new Error('タイムアウト：30秒以内に応答がありませんでした');
+    throw err;
+  } finally {
+    clearTimeout(timeout);
   }
-
-  const data = await response.json();
-  return data.candidates[0].content.parts[0].text;
 }

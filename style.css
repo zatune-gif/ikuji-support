@@ -10,7 +10,21 @@
   --border: #E8DFDC;
   --upcoming-bg: #FFF8E8;
   --upcoming-border: #E8D0A0;
+  --upcoming-text: #6A5020;
   --done-bg: #F0F0F0;
+  --food-ok-bg: #E8F4E8;
+  --food-ok-text: #2A5A20;
+  --food-ok-selected: #3A7A30;
+  --food-ok-title: #3A7A30;
+  --food-ng-bg: #FAE8E8;
+  --food-ng-text: #7A2020;
+  --food-ng-title: #9A3030;
+  --notice-bg: #F0F7EE;
+  --notice-border: #B8D4B0;
+  --notice-text: #3A6A30;
+  --warn-bg: #FEF8EC;
+  --warn-border: #E8C870;
+  --warn-text: #6A4C10;
   --header-h: 56px;
   --tabbar-h: 64px;
   --radius: 12px;
@@ -93,6 +107,13 @@ body {
 .tab-label { font-size: 11px; font-weight: 600; }
 
 .form-group { margin-bottom: 16px; }
+
+.form-hint {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 4px;
+  display: block;
+}
 
 .form-label-row {
   display: flex;
@@ -282,7 +303,7 @@ body {
 .badge-upcoming {
   font-size: 11px;
   background: var(--upcoming-border);
-  color: #6A5020;
+  color: var(--upcoming-text);
   padding: 2px 8px;
   border-radius: 10px;
   font-weight: 700;
@@ -328,8 +349,8 @@ body {
   margin-bottom: 6px;
 }
 
-.food-guide-col.ok .food-guide-col-title { color: #3A7A30; }
-.food-guide-col.ng .food-guide-col-title { color: #9A3030; }
+.food-guide-col.ok .food-guide-col-title { color: var(--food-ok-title); }
+.food-guide-col.ng .food-guide-col-title { color: var(--food-ng-title); }
 
 .food-tag {
   display: inline-flex;
@@ -343,8 +364,8 @@ body {
 }
 
 .food-tag.ok {
-  background: #E8F4E8;
-  color: #2A5A20;
+  background: var(--food-ok-bg);
+  color: var(--food-ok-text);
   cursor: pointer;
   user-select: none;
   transition: background 0.15s, color 0.15s;
@@ -353,29 +374,29 @@ body {
 .food-tag.ok:active { opacity: 0.7; }
 
 .food-tag.ok.selected {
-  background: #3A7A30;
-  color: #ffffff;
+  background: var(--food-ok-selected);
+  color: var(--white);
 }
 
-.food-tag.ng { background: #FAE8E8; color: #7A2020; }
+.food-tag.ng { background: var(--food-ng-bg); color: var(--food-ng-text); }
 
 .notice-info {
-  background: #F0F7EE;
-  border: 1px solid #B8D4B0;
+  background: var(--notice-bg);
+  border: 1px solid var(--notice-border);
   border-radius: var(--radius);
   padding: 12px 16px;
   font-size: 14px;
-  color: #3A6A30;
+  color: var(--notice-text);
   margin-bottom: 16px;
 }
 
 .error-msg {
-  background: #FEF8EC;
-  border: 1px solid #E8C870;
+  background: var(--warn-bg);
+  border: 1px solid var(--warn-border);
   border-radius: var(--radius);
   padding: 12px 16px;
   font-size: 14px;
-  color: #6A4C10;
+  color: var(--warn-text);
   margin-top: 12px;
 }
 

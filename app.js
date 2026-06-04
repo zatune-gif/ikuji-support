@@ -1,3 +1,12 @@
+// ===== ユーティリティ =====
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
 // ===== アレルギーリスト（設定タブのローカル状態） =====
 let allergies = [];
 
@@ -241,12 +250,12 @@ function renderVaccineTab() {
 
     return `
       <div class="${classes}">
-        <input type="checkbox" id="v-${v.id}" ${isDone ? 'checked' : ''}
-          onchange="toggleVaccineDone('${v.id}', this.checked)">
+        <input type="checkbox" id="v-${escapeHtml(v.id)}" ${isDone ? 'checked' : ''}
+          onchange="toggleVaccineDone('${escapeHtml(v.id)}', this.checked)">
         <div class="vaccine-info">
-          <div class="vaccine-name">${v.name}</div>
-          ${v.note ? `<div class="vaccine-note">${v.note}</div>` : ''}
-          <div class="vaccine-dates">${v.startDateStr} 〜 ${v.endDateStr}</div>
+          <div class="vaccine-name">${escapeHtml(v.name)}</div>
+          ${v.note ? `<div class="vaccine-note">${escapeHtml(v.note)}</div>` : ''}
+          <div class="vaccine-dates">${escapeHtml(v.startDateStr)} 〜 ${escapeHtml(v.endDateStr)}</div>
         </div>
         ${isUpcoming ? '<span class="badge-upcoming">接種時期</span>' : ''}
       </div>
