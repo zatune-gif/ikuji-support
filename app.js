@@ -111,20 +111,30 @@ function renderRecipeAllergyDisplay() {
     : saved.map(a => `<span class="allergy-chip">${a}</span>`).join('');
 
   const birthdate = storageLoad(STORAGE_KEYS.BIRTHDATE);
-  const noticeEl = document.getElementById('too-young-notice');
+  const savedAge  = storageLoad(STORAGE_KEYS.SELECTED_AGE);
+  const noticeEl  = document.getElementById('too-young-notice');
+  const ageInput  = document.getElementById('age-input');
+
   if (birthdate) {
     const ageMonths = getMonthsAge(birthdate);
-    const ageInput = document.getElementById('age-input');
     if (ageMonths < 5) {
       noticeEl.classList.remove('hidden');
       ageInput.value = '';
-    } else {
-      noticeEl.classList.add('hidden');
-      if (!ageInput.value) ageInput.value = ageMonths;
-      renderFoodGuide(ageInput.value);
+      return;
     }
+    noticeEl.classList.add('hidden');
   } else {
     noticeEl.classList.add('hidden');
+  }
+
+  // 保存済み月齢を優先、なければ生年月日から計算
+  if (savedAge) {
+    ageInput.value = savedAge;
+    renderFoodGuide(savedAge);
+  } else if (birthdate) {
+    const ageMonths = getMonthsAge(birthdate);
+    ageInput.value = ageMonths;
+    renderFoodGuide(ageMonths);
   }
 }
 
@@ -180,8 +190,12 @@ function initRecipeTab() {
   });
 
   document.getElementById('age-input').addEventListener('change', e => {
-    if (e.target.value) renderFoodGuide(e.target.value);
-    else document.getElementById('food-guide').classList.add('hidden');
+    if (e.target.value) {
+      storageSave(STORAGE_KEYS.SELECTED_AGE, e.target.value);
+      renderFoodGuide(e.target.value);
+    } else {
+      document.getElementById('food-guide').classList.add('hidden');
+    }
   });
 
   document.getElementById('generate-btn').addEventListener('click', async () => {

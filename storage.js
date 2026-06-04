@@ -4,6 +4,7 @@ const STORAGE_KEYS = {
   NAME: 'ikuji_name',
   ALLERGIES: 'ikuji_allergies',
   VACCINATION_DONE: 'ikuji_vaccination_done',
+  SELECTED_AGE: 'ikuji_selected_age',
 };
 
 function storageSave(key, value) {
