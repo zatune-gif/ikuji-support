@@ -40,7 +40,15 @@ function obStep3Complete() {
   const name = document.getElementById('ob-name-input').value.trim();
   if (name) storageSave(STORAGE_KEYS.NAME, name);
 
+  // 設定タブのUIに反映
+  document.getElementById('api-key-input').value   = storageLoad(STORAGE_KEYS.API_KEY)   || '';
+  document.getElementById('birthdate-input').value = storageLoad(STORAGE_KEYS.BIRTHDATE) || '';
+  document.getElementById('name-input').value      = storageLoad(STORAGE_KEYS.NAME)      || '';
+
   document.getElementById('onboarding').classList.add('hidden');
+
+  // 離乳食タブの月齢・アレルギー表示を更新
+  renderRecipeAllergyDisplay();
 }
 
 function obCheckAndShow() {
