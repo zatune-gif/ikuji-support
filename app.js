@@ -84,9 +84,19 @@ function renderRecipeAllergyDisplay() {
     : saved.map(a => `<span class="allergy-chip">${a}</span>`).join('');
 
   const birthdate = storageLoad(STORAGE_KEYS.BIRTHDATE);
+  const noticeEl = document.getElementById('too-young-notice');
   if (birthdate) {
+    const ageMonths = getMonthsAge(birthdate);
     const ageInput = document.getElementById('age-input');
-    if (!ageInput.value) ageInput.value = getMonthsAge(birthdate);
+    if (ageMonths < 5) {
+      noticeEl.classList.remove('hidden');
+      ageInput.value = '';
+    } else {
+      noticeEl.classList.add('hidden');
+      if (!ageInput.value) ageInput.value = ageMonths;
+    }
+  } else {
+    noticeEl.classList.add('hidden');
   }
 }
 

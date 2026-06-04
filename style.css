@@ -266,6 +266,16 @@ body {
   flex-shrink: 0;
 }
 
+.notice-info {
+  background: #F0F7EE;
+  border: 1px solid #B8D4B0;
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  font-size: 14px;
+  color: #3A6A30;
+  margin-bottom: 16px;
+}
+
 .error-msg {
   background: #FDE8E8;
   border: 1px solid #F0C0C0;
