@@ -311,14 +311,31 @@ body {
 .food-guide-col.ng .food-guide-col-title { color: #9A3030; }
 
 .food-tag {
-  display: inline-block;
-  font-size: 11px;
-  padding: 2px 7px;
-  border-radius: 10px;
-  margin: 2px 2px 2px 0;
+  display: inline-flex;
+  align-items: center;
+  font-size: 12px;
+  padding: 6px 11px;
+  border-radius: 16px;
+  margin: 3px 3px 3px 0;
+  min-height: 34px;
+  line-height: 1.3;
 }
 
-.food-tag.ok { background: #E8F4E8; color: #2A5A20; }
+.food-tag.ok {
+  background: #E8F4E8;
+  color: #2A5A20;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s, color 0.15s;
+}
+
+.food-tag.ok:active { opacity: 0.7; }
+
+.food-tag.ok.selected {
+  background: #3A7A30;
+  color: #ffffff;
+}
+
 .food-tag.ng { background: #FAE8E8; color: #7A2020; }
 
 .notice-info {

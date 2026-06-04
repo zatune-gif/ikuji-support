@@ -109,10 +109,39 @@ function renderFoodGuide(ageMonths) {
 
   document.getElementById('food-guide-stage').textContent = guide.stage;
   document.getElementById('food-guide-texture').textContent = guide.texture;
-  document.getElementById('food-guide-ok').innerHTML =
-    guide.ok.map(f => `<span class="food-tag ok">${f}</span>`).join('');
-  document.getElementById('food-guide-ng').innerHTML =
-    guide.ng.map(f => `<span class="food-tag ng">${f}</span>`).join('');
+
+  const ingInput = document.getElementById('ingredients-input');
+
+  function getSelected() {
+    return ingInput.value.split('、').map(s => s.trim()).filter(s => s);
+  }
+
+  function makeOkTag(food) {
+    const span = document.createElement('span');
+    span.className = 'food-tag ok';
+    span.textContent = food;
+    if (getSelected().includes(food)) span.classList.add('selected');
+    span.addEventListener('click', () => {
+      const current = getSelected();
+      if (current.includes(food)) {
+        ingInput.value = current.filter(s => s !== food).join('、');
+        span.classList.remove('selected');
+      } else {
+        current.push(food);
+        ingInput.value = current.join('、');
+        span.classList.add('selected');
+      }
+    });
+    return span;
+  }
+
+  const okContainer = document.getElementById('food-guide-ok');
+  const ngContainer = document.getElementById('food-guide-ng');
+  okContainer.innerHTML = '';
+  ngContainer.innerHTML = '';
+  guide.ok.forEach(f => okContainer.appendChild(makeOkTag(f)));
+  ngContainer.innerHTML = guide.ng.map(f => `<span class="food-tag ng">${f}</span>`).join('');
+
   guideEl.classList.remove('hidden');
 }
 
