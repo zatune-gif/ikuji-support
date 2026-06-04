@@ -218,26 +218,20 @@
       <!-- Step 2: APIキー取得 -->
       <div class="ob-step" id="ob-step-2">
         <h2 class="ob-title">AIレシピ機能の準備</h2>
-        <p class="ob-desc">Gemini APIキーが必要です。<strong>無料</strong>で取得できます。</p>
+        <p class="ob-desc">Gemini APIキーが必要です。<strong>無料</strong>で取得できます。<br>まず①〜⑤の手順を確認してください。</p>
 
         <div class="ob-apikey-steps">
           <div class="ob-apikey-step">
             <span class="ob-step-num">①</span>
-            <div>
-              <strong>Google AI Studio を開く</strong>
-              <p>下のボタンをタップしてください</p>
-              <a href="https://aistudio.google.com/apikey" target="_blank" class="btn-primary ob-external-btn">
-                Google AI Studio を開く ↗
-              </a>
-            </div>
+            <div><strong>Google AI Studio（Googleのサービス）を開く</strong></div>
           </div>
           <div class="ob-apikey-step">
             <span class="ob-step-num">②</span>
-            <div><strong>Googleアカウントでログイン</strong><p>Gmailアカウントでサインインします</p></div>
+            <div><strong>Googleアカウント（Gmail）でログイン</strong></div>
           </div>
           <div class="ob-apikey-step">
             <span class="ob-step-num">③</span>
-            <div><strong>「APIキーを作成」をタップ</strong><p>ページ上部のボタンをタップしてください</p></div>
+            <div><strong>「APIキーを作成」ボタンをタップ</strong></div>
           </div>
           <div class="ob-apikey-step">
             <span class="ob-step-num">④</span>
@@ -246,7 +240,7 @@
           <div class="ob-apikey-step">
             <span class="ob-step-num">⑤</span>
             <div>
-              <strong>画面に表示された長い文字列がAPIキーです</strong>
+              <strong>表示された長い文字列がAPIキー。右端のアイコンをタップしてコピー</strong>
               <div class="ob-key-sample">
                 <span class="ob-key-label">APIキー</span>
                 <div class="ob-key-sample-row">
@@ -254,20 +248,22 @@
                   <span class="ob-copy-icon">⧉</span>
                 </div>
               </div>
-              <p class="ob-key-hint">右端の <strong>⧉</strong> のようなアイコンをタップすると<br>文字列がコピーされます（自動で記憶される）</p>
-              <p class="ob-key-hint" style="margin-top:4px">コピーしたらこのアプリに戻ってください</p>
+              <p class="ob-key-hint">⧉ をタップすると文字列が自動で記憶されます</p>
             </div>
           </div>
-          <div class="ob-apikey-step">
-            <span class="ob-step-num">⑥</span>
-            <div>
-              <strong>このアプリに戻り、下の欄を長押し→「貼り付け」</strong>
-              <div class="form-group" style="margin-top:8px">
-                <input type="text" id="ob-api-key-input" placeholder="APIキーをここに貼り付け">
-              </div>
-              <div id="ob-api-key-error" class="ob-inline-error hidden">APIキーを入力してください</div>
-            </div>
-          </div>
+        </div>
+
+        <div class="ob-cta-block">
+          <p class="ob-cta-label">手順を確認できたら①から始めましょう</p>
+          <a href="https://aistudio.google.com/apikey" target="_blank" class="btn-primary ob-external-btn">
+            Google AI Studio を開く ↗
+          </a>
+          <p class="ob-key-hint" style="margin-top:8px;text-align:center">コピーしたらこのアプリに戻って、下の欄に貼り付けてください</p>
+        </div>
+
+        <div class="form-group" style="margin-top:4px">
+          <input type="text" id="ob-api-key-input" placeholder="APIキーをここに長押し→貼り付け">
+          <div id="ob-api-key-error" class="ob-inline-error hidden">APIキーを入力してください</div>
         </div>
 
         <div class="ob-btn-row">

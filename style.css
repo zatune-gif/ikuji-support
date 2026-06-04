@@ -614,6 +614,22 @@ body {
   margin-bottom: 8px;
 }
 
+.ob-cta-block {
+  margin: 20px 0 8px;
+  padding: 16px;
+  background: var(--bg);
+  border-radius: var(--radius);
+  border: 1.5px solid var(--primary-light);
+  text-align: center;
+}
+
+.ob-cta-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
 .ob-external-btn {
   display: inline-block;
   text-decoration: none;
