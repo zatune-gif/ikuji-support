@@ -1,3 +1,11 @@
+// ===== ヘルプトグル =====
+function toggleHelp() {
+  const body = document.getElementById('help-body');
+  const chevron = document.getElementById('help-chevron');
+  body.classList.toggle('hidden');
+  chevron.classList.toggle('open');
+}
+
 // ===== ユーティリティ =====
 function escapeHtml(str) {
   return String(str)

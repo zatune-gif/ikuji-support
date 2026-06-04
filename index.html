@@ -140,6 +140,35 @@
       <div class="divider">
         <button id="clear-all-btn" class="btn-danger">すべてのデータを削除</button>
       </div>
+
+      <!-- ヘルプセクション -->
+      <div class="help-section">
+        <button class="help-header" id="help-toggle" onclick="toggleHelp()">
+          <span>❓ ヘルプ・よくある質問</span>
+          <span class="help-chevron" id="help-chevron">▼</span>
+        </button>
+        <div class="help-body hidden" id="help-body">
+          <dl class="faq-list">
+            <dt>レシピが生成されない</dt>
+            <dd>① APIキーが正しく設定されているか確認してください。<br>② 無料枠の上限（1日20回）に達している可能性があります。翌日リセットされるまでお待ちください。</dd>
+
+            <dt>予防接種スケジュールが表示されない</dt>
+            <dd>設定タブで生年月日が保存されているか確認してください。</dd>
+
+            <dt>APIキーを忘れた・確認したい</dt>
+            <dd><a href="https://aistudio.google.com/apikey" target="_blank">Google AI Studio</a> に同じGoogleアカウントでログインすると確認できます。</dd>
+
+            <dt>別のスマホでも使いたい</dt>
+            <dd>データはブラウザごとに保存されるため、別のデバイスでは設定タブで改めてAPIキー・生年月日を入力・保存してください。</dd>
+
+            <dt>設定をやり直したい</dt>
+            <dd>「すべてのデータを削除」ボタンを押すと初期状態に戻ります。次回起動時に設定ウィザードが表示されます。</dd>
+
+            <dt>食材ガイドの情報について</dt>
+            <dd>厚生労働省のガイドラインに基づいた目安です。アレルギーや体質によって個人差があるため、詳細はかかりつけ医にご相談ください。</dd>
+          </dl>
+        </div>
+      </div>
     </section>
 
   </main>
@@ -239,6 +268,13 @@
           <button class="btn-reset ob-back" onclick="obGoStep(1)">← 戻る</button>
           <button class="btn-primary ob-next" onclick="obStep2Next()">次へ →</button>
         </div>
+        <button class="ob-help-link" onclick="obToggleHelp('ob-help-2')">❓ 困ったときは</button>
+        <div class="ob-help-box hidden" id="ob-help-2">
+          <p><strong>Google AI Studioが開かない場合</strong><br>ブラウザのポップアップブロックを確認してください。</p>
+          <p><strong>APIキーが見つからない場合</strong><br>左メニューの「API キー」→ 既存のキーをコピーしてください。</p>
+          <p><strong>ログインできない場合</strong><br>Gmailアカウント（@gmail.com）でのログインが必要です。</p>
+          <p><strong>後で設定したい場合</strong><br>設定タブからいつでも入力できます。</p>
+        </div>
       </div>
 
       <!-- Step 3: 赤ちゃんの情報 -->
@@ -263,6 +299,11 @@
         <div class="ob-btn-row">
           <button class="btn-reset ob-back" onclick="obGoStep(2)">← 戻る</button>
           <button class="btn-primary ob-next" onclick="obStep3Complete()">設定完了 →</button>
+        </div>
+        <button class="ob-help-link" onclick="obToggleHelp('ob-help-3')">❓ 困ったときは</button>
+        <div class="ob-help-box hidden" id="ob-help-3">
+          <p><strong>後から変更したい場合</strong><br>設定タブからいつでも変更できます。</p>
+          <p><strong>設定をやり直したい場合</strong><br>設定タブ→「すべてのデータを削除」で初期状態に戻ります。</p>
         </div>
       </div>
 

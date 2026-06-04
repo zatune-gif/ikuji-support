@@ -1,3 +1,8 @@
+function obToggleHelp(id) {
+  const box = document.getElementById(id);
+  box.classList.toggle('hidden');
+}
+
 function obGoStep(step) {
   document.querySelectorAll('.ob-step').forEach(el => el.classList.remove('active'));
   document.querySelectorAll('.ob-dot').forEach(el => el.classList.remove('active', 'done'));
