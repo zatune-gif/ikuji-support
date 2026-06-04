@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>育児サポート</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="header">
+    <h1 class="header-title">🌸 育児サポート</h1>
+  </header>
+
+  <main class="main-content">
+
+    <!-- 離乳食タブ -->
+    <section id="tab-recipe" class="tab-panel active">
+      <h2>離乳食レシピ</h2>
+
+      <div class="form-group">
+        <label>月齢</label>
+        <input type="number" id="age-input" min="5" max="24"
+          placeholder="月齢を入力（例: 7）">
+      </div>
+
+      <div class="form-group">
+        <label>使える食材</label>
+        <textarea id="ingredients-input"
+          placeholder="例: にんじん、じゃがいも、鶏ひき肉"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>アレルギー除外食材</label>
+        <div id="recipe-allergy-display" class="allergy-list"></div>
+        <small style="color:var(--text-muted);font-size:12px;margin-top:4px;display:block">
+          設定タブで編集できます
+        </small>
+      </div>
+
+      <button id="generate-btn" class="btn-primary">レシピを作る</button>
+      <div id="loading" class="loading hidden">レシピを考えています...</div>
+      <div id="error-msg" class="error-msg hidden"></div>
+      <div id="recipe-result" class="recipe-card hidden"></div>
+    </section>
+
+    <!-- 予防接種タブ -->
+    <section id="tab-vaccine" class="tab-panel">
+      <h2>予防接種スケジュール</h2>
+      <div id="vaccine-no-birthdate" class="error-msg hidden">
+        設定タブで生年月日を登録してください
+      </div>
+      <div id="vaccine-list"></div>
+    </section>
+
+    <!-- 設定タブ -->
+    <section id="tab-settings" class="tab-panel">
+      <h2>設定</h2>
+
+      <div class="form-group">
+        <label>Gemini APIキー</label>
+        <input type="text" id="api-key-input" placeholder="AIza...">
+      </div>
+
+      <div class="form-group">
+        <label>赤ちゃんの名前（任意）</label>
+        <input type="text" id="name-input" placeholder="例: さくら">
+      </div>
+
+      <div class="form-group">
+        <label>生年月日</label>
+        <input type="date" id="birthdate-input">
+      </div>
+
+      <div class="form-group">
+        <label>アレルギー除外食材</label>
+        <div class="allergy-input-row">
+          <input type="text" id="allergy-new-input" placeholder="例: 卵">
+          <button class="btn-secondary" id="allergy-add-btn">追加</button>
+        </div>
+        <div id="allergy-chip-list" class="allergy-list" style="margin-top:8px"></div>
+      </div>
+
+      <button id="save-settings-btn" class="btn-primary">保存する</button>
+
+      <div class="divider">
+        <button id="clear-all-btn" class="btn-danger">すべてのデータを削除</button>
+      </div>
+    </section>
+
+  </main>
+
+  <nav class="tab-bar">
+    <button class="tab-btn active" data-tab="recipe">
+      <span class="tab-icon">🍼</span>
+      <span class="tab-label">離乳食</span>
+    </button>
+    <button class="tab-btn" data-tab="vaccine">
+      <span class="tab-icon">💉</span>
+      <span class="tab-label">予防接種</span>
+    </button>
+    <button class="tab-btn" data-tab="settings">
+      <span class="tab-icon">⚙️</span>
+      <span class="tab-label">設定</span>
+    </button>
+  </nav>
+
+  <script src="storage.js"></script>
+  <script src="vaccination.js"></script>
+  <script src="gemini.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
