@@ -227,7 +227,9 @@ function initRecipeTab() {
     }
 
     generateBtn.disabled = true;
+    generateBtn.textContent = 'AIが考え中...';
     loadingEl.classList.remove('hidden');
+    loadingEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
     try {
       const recipe = await generateRecipe({
@@ -244,6 +246,7 @@ function initRecipeTab() {
     } finally {
       loadingEl.classList.add('hidden');
       generateBtn.disabled = false;
+      generateBtn.textContent = 'レシピを作る';
     }
   });
 }
