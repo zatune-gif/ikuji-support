@@ -107,7 +107,7 @@ function renderRecipeAllergyDisplay() {
   const saved = storageLoad(STORAGE_KEYS.ALLERGIES, []);
   const el = document.getElementById('recipe-allergy-display');
   el.innerHTML = saved.length === 0
-    ? '<span style="color:var(--text-muted);font-size:13px">なし</span>'
+    ? '<span class="allergy-empty">なし</span>'
     : saved.map(a => `<span class="allergy-chip">${a}</span>`).join('');
 
   const birthdate = storageLoad(STORAGE_KEYS.BIRTHDATE);

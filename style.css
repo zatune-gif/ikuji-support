@@ -3,6 +3,7 @@
   --primary: #D4A5A5;
   --primary-light: #EDD5D5;
   --secondary: #A5C4B5;
+  --secondary-light: #D5E8E0;
   --tab-bg: #F0EBE8;
   --text: #3D3535;
   --text-muted: #8A7A7A;
@@ -250,6 +251,8 @@ body {
   color: var(--text);
 }
 
+.allergy-chip-list { margin-top: 8px; }
+
 .allergy-chip button {
   background: none;
   border: none;
@@ -259,6 +262,8 @@ body {
   padding: 0;
   line-height: 1;
 }
+
+.allergy-empty { font-size: 13px; color: var(--text-muted); }
 
 .allergy-input-row {
   display: flex;
@@ -620,6 +625,11 @@ body {
   background: var(--bg);
   border-radius: var(--radius);
   border: 1.5px solid var(--primary-light);
+  text-align: center;
+}
+
+.ob-key-hint-center {
+  margin-top: 8px;
   text-align: center;
 }
 
