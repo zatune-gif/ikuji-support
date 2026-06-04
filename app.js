@@ -170,6 +170,7 @@ function renderVaccineTab() {
           onchange="toggleVaccineDone('${v.id}', this.checked)">
         <div class="vaccine-info">
           <div class="vaccine-name">${v.name}</div>
+          ${v.note ? `<div class="vaccine-note">${v.note}</div>` : ''}
           <div class="vaccine-dates">${v.startDateStr} 〜 ${v.endDateStr}</div>
         </div>
         ${isUpcoming ? '<span class="badge-upcoming">接種時期</span>' : ''}
