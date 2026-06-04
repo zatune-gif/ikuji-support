@@ -626,35 +626,45 @@ body {
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: 8px;
-  padding: 8px 12px;
-  font-family: monospace;
-  font-size: 13px;
-  color: var(--text);
+  padding: 10px 12px;
   margin: 8px 0 6px;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 6px;
 }
 
+.ob-key-sample-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
 .ob-key-label {
-  font-size: 10px;
-  font-family: inherit;
+  font-size: 11px;
   background: var(--secondary);
   color: var(--white);
   border-radius: 4px;
-  padding: 2px 6px;
+  padding: 2px 8px;
   white-space: nowrap;
-  flex-shrink: 0;
 }
 
-.ob-key-mask { color: var(--text-muted); letter-spacing: 2px; flex: 1; }
+.ob-key-mask {
+  font-family: monospace;
+  font-size: 13px;
+  color: var(--text-muted);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  flex: 1;
+}
 
 .ob-copy-icon {
-  font-size: 18px;
+  font-size: 16px;
   color: var(--text-muted);
   border: 1.5px solid var(--border);
   border-radius: 6px;
-  padding: 2px 6px;
+  padding: 2px 8px;
   flex-shrink: 0;
   background: var(--white);
 }
