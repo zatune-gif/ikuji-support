@@ -28,8 +28,25 @@
           placeholder="月齢を入力（例: 7）">
       </div>
 
+      <div id="food-guide" class="food-guide hidden">
+        <div class="food-guide-header">
+          <span id="food-guide-stage"></span>
+          <span id="food-guide-texture" class="food-guide-texture"></span>
+        </div>
+        <div class="food-guide-cols">
+          <div class="food-guide-col ok">
+            <div class="food-guide-col-title">✅ 使える食材例</div>
+            <div id="food-guide-ok"></div>
+          </div>
+          <div class="food-guide-col ng">
+            <div class="food-guide-col-title">❌ 避ける食材</div>
+            <div id="food-guide-ng"></div>
+          </div>
+        </div>
+      </div>
+
       <div class="form-group">
-        <label>使える食材</label>
+        <label>使う食材</label>
         <textarea id="ingredients-input"
           placeholder="例: にんじん、じゃがいも、鶏ひき肉"></textarea>
       </div>
@@ -111,6 +128,7 @@
 
   <script src="storage.js"></script>
   <script src="vaccination.js"></script>
+  <script src="food-guide.js"></script>
   <script src="gemini.js"></script>
   <script src="app.js"></script>
 </body>

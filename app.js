@@ -94,14 +94,35 @@ function renderRecipeAllergyDisplay() {
     } else {
       noticeEl.classList.add('hidden');
       if (!ageInput.value) ageInput.value = ageMonths;
+      renderFoodGuide(ageInput.value);
     }
   } else {
     noticeEl.classList.add('hidden');
   }
 }
 
+// ===== 離乳食タブ：食材ガイド =====
+function renderFoodGuide(ageMonths) {
+  const guideEl = document.getElementById('food-guide');
+  const guide = getFoodGuide(parseInt(ageMonths));
+  if (!guide) { guideEl.classList.add('hidden'); return; }
+
+  document.getElementById('food-guide-stage').textContent = guide.stage;
+  document.getElementById('food-guide-texture').textContent = guide.texture;
+  document.getElementById('food-guide-ok').innerHTML =
+    guide.ok.map(f => `<span class="food-tag ok">${f}</span>`).join('');
+  document.getElementById('food-guide-ng').innerHTML =
+    guide.ng.map(f => `<span class="food-tag ng">${f}</span>`).join('');
+  guideEl.classList.remove('hidden');
+}
+
 // ===== 離乳食タブ =====
 function initRecipeTab() {
+  document.getElementById('age-input').addEventListener('input', e => {
+    if (e.target.value) renderFoodGuide(e.target.value);
+    else document.getElementById('food-guide').classList.add('hidden');
+  });
+
   document.getElementById('generate-btn').addEventListener('click', async () => {
     const apiKey      = storageLoad(STORAGE_KEYS.API_KEY);
     const ageInput    = document.getElementById('age-input');
