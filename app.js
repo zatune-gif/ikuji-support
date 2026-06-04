@@ -2,11 +2,18 @@
 let allergies = [];
 
 // ===== タブ切り替え =====
+const TAB_TITLES = {
+  recipe:   '🌸 離乳食レシピ提案',
+  vaccine:  '🌸 予防接種スケジュール',
+  settings: '🌸 設定',
+};
+
 function switchTab(tabId) {
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.getElementById(`tab-${tabId}`).classList.add('active');
   document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
+  document.querySelector('.header-title').textContent = TAB_TITLES[tabId];
   if (tabId === 'vaccine') renderVaccineTab();
   if (tabId === 'recipe') renderRecipeAllergyDisplay();
 }
