@@ -146,10 +146,121 @@
     </button>
   </nav>
 
+  <!-- オンボーディングウィザード -->
+  <div id="onboarding" class="ob-overlay hidden">
+    <div class="ob-card">
+
+      <!-- ステップインジケーター -->
+      <div class="ob-steps">
+        <div class="ob-dot active" id="ob-dot-1">1</div>
+        <div class="ob-line"></div>
+        <div class="ob-dot" id="ob-dot-2">2</div>
+        <div class="ob-line"></div>
+        <div class="ob-dot" id="ob-dot-3">3</div>
+      </div>
+
+      <!-- Step 1: ようこそ -->
+      <div class="ob-step active" id="ob-step-1">
+        <div class="ob-icon">🌸</div>
+        <h2 class="ob-title">離乳食レシピ提案へようこそ</h2>
+        <p class="ob-desc">このアプリでできること：</p>
+        <ul class="ob-list">
+          <li>🍼 月齢・食材に合わせた<strong>AIレシピ提案</strong></li>
+          <li>📋 月齢ごとの<strong>食材ガイド</strong>（OK・NG食材）</li>
+          <li>💉 <strong>予防接種スケジュール</strong>の自動計算</li>
+        </ul>
+        <p class="ob-note">初回のみ、Gemini APIキーと赤ちゃんの情報を設定します（約2分）</p>
+        <button class="btn-primary ob-next" onclick="obGoStep(2)">はじめる →</button>
+      </div>
+
+      <!-- Step 2: APIキー取得 -->
+      <div class="ob-step" id="ob-step-2">
+        <h2 class="ob-title">AIレシピ機能の準備</h2>
+        <p class="ob-desc">Gemini APIキーが必要です。<strong>無料</strong>で取得できます。</p>
+
+        <div class="ob-apikey-steps">
+          <div class="ob-apikey-step">
+            <span class="ob-step-num">①</span>
+            <div>
+              <strong>Google AI Studio を開く</strong>
+              <p>下のボタンをタップしてください</p>
+              <a href="https://aistudio.google.com/apikey" target="_blank" class="btn-primary ob-external-btn">
+                Google AI Studio を開く ↗
+              </a>
+            </div>
+          </div>
+          <div class="ob-apikey-step">
+            <span class="ob-step-num">②</span>
+            <div><strong>Googleアカウントでログイン</strong><p>Gmailアカウントでサインインします</p></div>
+          </div>
+          <div class="ob-apikey-step">
+            <span class="ob-step-num">③</span>
+            <div><strong>「APIキーを作成」をタップ</strong><p>ページ上部のボタンをタップしてください</p></div>
+          </div>
+          <div class="ob-apikey-step">
+            <span class="ob-step-num">④</span>
+            <div><strong>「新しいプロジェクトでAPIキーを作成」を選択</strong></div>
+          </div>
+          <div class="ob-apikey-step">
+            <span class="ob-step-num">⑤</span>
+            <div>
+              <strong>表示されたキーをコピー</strong>
+              <p>右側のコピーアイコンをタップ</p>
+              <div class="ob-key-sample">AIzaSy<span class="ob-key-mask">••••••••••••••••••••••••••••</span></div>
+              <p class="ob-key-hint">「AIza」から始まる文字列がAPIキーです</p>
+            </div>
+          </div>
+          <div class="ob-apikey-step">
+            <span class="ob-step-num">⑥</span>
+            <div>
+              <strong>このアプリに戻り、下に貼り付ける</strong>
+              <div class="form-group" style="margin-top:8px">
+                <input type="text" id="ob-api-key-input" placeholder="APIキーをここに貼り付け（AIza...）">
+              </div>
+              <div id="ob-api-key-error" class="ob-inline-error hidden">「AIza」から始まるキーを入力してください</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ob-btn-row">
+          <button class="btn-reset ob-back" onclick="obGoStep(1)">← 戻る</button>
+          <button class="btn-primary ob-next" onclick="obStep2Next()">次へ →</button>
+        </div>
+      </div>
+
+      <!-- Step 3: 赤ちゃんの情報 -->
+      <div class="ob-step" id="ob-step-3">
+        <div class="ob-icon">👶</div>
+        <h2 class="ob-title">赤ちゃんの情報を入力</h2>
+        <p class="ob-desc">予防接種スケジュールと月齢の自動計算に使用します</p>
+
+        <div class="form-group">
+          <label>生年月日 <span class="ob-required">必須</span></label>
+          <input type="date" id="ob-birthdate-input">
+          <div id="ob-birthdate-error" class="ob-inline-error hidden">生年月日を入力してください</div>
+        </div>
+
+        <div class="form-group">
+          <label>赤ちゃんの名前 <span class="ob-optional">任意</span></label>
+          <input type="text" id="ob-name-input" placeholder="例: さくら">
+        </div>
+
+        <p class="ob-note">アレルギー除外食材は後から設定タブで追加できます</p>
+
+        <div class="ob-btn-row">
+          <button class="btn-reset ob-back" onclick="obGoStep(2)">← 戻る</button>
+          <button class="btn-primary ob-next" onclick="obStep3Complete()">設定完了 →</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
   <script src="storage.js"></script>
   <script src="vaccination.js"></script>
   <script src="food-guide.js"></script>
   <script src="gemini.js"></script>
+  <script src="onboarding.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
