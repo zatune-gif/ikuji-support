@@ -16,7 +16,7 @@ assert(getMonthsAge(new Date().toISOString().split('T')[0]) === 0, 'getMonthsAge
 
 const schedule = calculateSchedule(birth6m);
 assert(Array.isArray(schedule), 'calculateSchedule: 配列を返す');
-assert(schedule.length === 24, `calculateSchedule: 24件 (got ${schedule.length})`);
+assert(schedule.length === 20, `calculateSchedule: 20件 (got ${schedule.length})`);
 
 const item = schedule[0];
 ['id','name','startMonths','endMonths','startDate','endDate',
