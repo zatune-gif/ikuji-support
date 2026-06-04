@@ -15,7 +15,7 @@ function obStep2Next() {
   const errorEl = document.getElementById('ob-api-key-error');
   const val = keyInput.value.trim();
 
-  if (!val.startsWith('AIza') || val.length < 20) {
+  if (val.length < 10) {
     errorEl.classList.remove('hidden');
     keyInput.focus();
     return;
