@@ -90,9 +90,62 @@ function renderRecipeAllergyDisplay() {
   }
 }
 
+// ===== 離乳食タブ =====
+function initRecipeTab() {
+  document.getElementById('generate-btn').addEventListener('click', async () => {
+    const apiKey      = storageLoad(STORAGE_KEYS.API_KEY);
+    const ageInput    = document.getElementById('age-input');
+    const ingInput    = document.getElementById('ingredients-input');
+    const loadingEl   = document.getElementById('loading');
+    const errorEl     = document.getElementById('error-msg');
+    const resultEl    = document.getElementById('recipe-result');
+    const generateBtn = document.getElementById('generate-btn');
+
+    errorEl.classList.add('hidden');
+    resultEl.classList.add('hidden');
+
+    if (!apiKey) {
+      errorEl.textContent = 'APIキーが設定されていません。設定タブで登録してください。';
+      errorEl.classList.remove('hidden');
+      return;
+    }
+    if (!ageInput.value) {
+      errorEl.textContent = '月齢を入力してください。';
+      errorEl.classList.remove('hidden');
+      return;
+    }
+    if (!ingInput.value.trim()) {
+      errorEl.textContent = '使える食材を入力してください。';
+      errorEl.classList.remove('hidden');
+      return;
+    }
+
+    generateBtn.disabled = true;
+    loadingEl.classList.remove('hidden');
+
+    try {
+      const recipe = await generateRecipe({
+        apiKey,
+        ageMonths:   parseInt(ageInput.value),
+        ingredients: ingInput.value.trim(),
+        allergies:   storageLoad(STORAGE_KEYS.ALLERGIES, []),
+      });
+      resultEl.textContent = recipe;
+      resultEl.classList.remove('hidden');
+    } catch (err) {
+      errorEl.textContent = `エラー: ${err.message}`;
+      errorEl.classList.remove('hidden');
+    } finally {
+      loadingEl.classList.add('hidden');
+      generateBtn.disabled = false;
+    }
+  });
+}
+
 // ===== 初期化 =====
 function init() {
   initSettingsTab();
+  initRecipeTab();
   renderRecipeAllergyDisplay();
 }
 
