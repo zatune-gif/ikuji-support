@@ -1,0 +1,15 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FAF8F5"/>
+      <stop offset="100%" stop-color="#EDD5D5"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="600" cy="220" r="90" fill="#D4A5A5" opacity="0.3"/>
+  <text x="600" y="248" font-family="sans-serif" font-size="90" text-anchor="middle">🌸</text>
+  <text x="600" y="360" font-family="'Hiragino Sans', 'Meiryo', sans-serif" font-size="68" font-weight="bold" text-anchor="middle" fill="#3D3535">離乳食レシピ提案</text>
+  <text x="600" y="430" font-family="'Hiragino Sans', 'Meiryo', sans-serif" font-size="34" text-anchor="middle" fill="#8A7A7A">月齢・食材から AI がレシピを提案</text>
+  <text x="600" y="480" font-family="'Hiragino Sans', 'Meiryo', sans-serif" font-size="34" text-anchor="middle" fill="#8A7A7A">予防接種スケジュールも自動計算</text>
+  <text x="600" y="560" font-family="sans-serif" font-size="26" text-anchor="middle" fill="#D4A5A5">zatune-gif.github.io/ikuji-support</text>
+</svg>
