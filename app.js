@@ -118,7 +118,7 @@ function renderFoodGuide(ageMonths) {
 
 // ===== 離乳食タブ =====
 function initRecipeTab() {
-  document.getElementById('age-input').addEventListener('input', e => {
+  document.getElementById('age-input').addEventListener('change', e => {
     if (e.target.value) renderFoodGuide(e.target.value);
     else document.getElementById('food-guide').classList.add('hidden');
   });
