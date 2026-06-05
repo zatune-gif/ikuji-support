@@ -227,7 +227,7 @@ function initRecipeTab() {
     }
 
     generateBtn.disabled = true;
-    generateBtn.textContent = 'AIが考え中...';
+    generateBtn.textContent = '考え中...';
     loadingEl.classList.remove('hidden');
     loadingEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
 

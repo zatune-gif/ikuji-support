@@ -751,7 +751,6 @@ body {
   padding: 6px 16px;
   background: var(--tab-bg);
   border-top: 1px solid var(--border);
-  margin-bottom: var(--tabbar-h);
 }
 
 .divider {
