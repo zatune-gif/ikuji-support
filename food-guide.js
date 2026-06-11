@@ -67,3 +67,7 @@ const FOOD_GUIDE = [
 function getFoodGuide(ageMonths) {
   return FOOD_GUIDE.find(g => ageMonths >= g.minMonths && ageMonths <= g.maxMonths) || null;
 }
+
+if (typeof module !== 'undefined') {
+  module.exports = { FOOD_GUIDE, getFoodGuide };
+}

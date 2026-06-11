@@ -46,8 +46,8 @@ document.querySelectorAll('.tab-btn').forEach(btn =>
 function renderAllergyChips() {
   document.getElementById('allergy-chip-list').innerHTML = allergies.map((a, i) => `
     <span class="allergy-chip">
-      ${a}
-      <button onclick="removeAllergy(${i})" aria-label="${a}を削除">×</button>
+      ${escapeHtml(a)}
+      <button onclick="removeAllergy(${i})" aria-label="${escapeHtml(a)}を削除">×</button>
     </span>
   `).join('');
 }
@@ -108,7 +108,7 @@ function renderRecipeAllergyDisplay() {
   const el = document.getElementById('recipe-allergy-display');
   el.innerHTML = saved.length === 0
     ? '<span class="allergy-empty">なし</span>'
-    : saved.map(a => `<span class="allergy-chip">${a}</span>`).join('');
+    : saved.map(a => `<span class="allergy-chip">${escapeHtml(a)}</span>`).join('');
 
   const birthdate = storageLoad(STORAGE_KEYS.BIRTHDATE);
   const savedAge  = storageLoad(STORAGE_KEYS.SELECTED_AGE);

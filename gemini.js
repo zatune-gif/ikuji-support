@@ -1,3 +1,4 @@
+const GEMINI_TIMEOUT_MS = 30000;
 const GEMINI_ENDPOINT =
   'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent';
 
@@ -34,7 +35,7 @@ async function generateRecipe({ apiKey, ageMonths, ingredients, allergies }) {
 （注意点を1〜2文で）`;
 
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 30000);
+  const timeout = setTimeout(() => controller.abort(), GEMINI_TIMEOUT_MS);
 
   try {
     const response = await fetch(`${GEMINI_ENDPOINT}?key=${apiKey}`, {
@@ -54,9 +55,13 @@ async function generateRecipe({ apiKey, ageMonths, ingredients, allergies }) {
     if (!text) throw new Error('APIから回答を取得できませんでした');
     return text;
   } catch (err) {
-    if (err.name === 'AbortError') throw new Error('タイムアウト：30秒以内に応答がありませんでした');
+    if (err.name === 'AbortError') throw new Error(`タイムアウト：${GEMINI_TIMEOUT_MS / 1000}秒以内に応答がありませんでした`);
     throw err;
   } finally {
     clearTimeout(timeout);
   }
+}
+
+if (typeof module !== 'undefined') {
+  module.exports = { getTextureGuide, GEMINI_TIMEOUT_MS };
 }
